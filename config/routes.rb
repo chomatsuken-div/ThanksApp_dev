@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    # usersにネストしているのが多いのでresourcesかnamespaceで区切った方が良いです
+    # また、パスがcommunityでcompaniesコントローラみたいな、ディレクトリ探しただけじゃ分からないネーミングは避けた方が良いです。
+    # コントローラとビューが数百個、ルーティングが1000行って単位に増えた時にURLからコントローラ＆アクションを推測できないのが辛すぎます。
+
     # ユーザー処理
     get    "users/login"                     , to: 'users#login'                 # ログインしているユーザーのデータを取得
     delete "users/:id/signout"              , to: 'users#signout'               # ログアウト
